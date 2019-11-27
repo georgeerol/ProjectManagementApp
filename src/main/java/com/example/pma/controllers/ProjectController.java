@@ -4,6 +4,7 @@ import com.example.pma.dao.EmployeeRepository;
 import com.example.pma.dao.ProjectRepository;
 import com.example.pma.entities.Employee;
 import com.example.pma.entities.Project;
+import com.example.pma.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +20,14 @@ import java.util.List;
 public class ProjectController {
 
 	@Autowired
-	ProjectRepository projectRepository;
+	ProjectService projService;
 
 	@Autowired
 	EmployeeRepository employeeRepository;
 
 	@GetMapping
 	public String displayProjects(Model model) {
-		List<Project> projects = projectRepository.findAll();
+		List<Project> projects = projService.getAll();
 		model.addAttribute("projects", projects);
 		return "projects/list-projects";
 	}
@@ -45,7 +46,7 @@ public class ProjectController {
 	@PostMapping("/save")
 	public String createProject(Project project, @RequestParam List<Long> employees, Model model) {
 
-		projectRepository.save(project);
+		projService.save(project);
 
 		// use a redirect to prevent duplicate submissions
 		return "redirect:/projects";
