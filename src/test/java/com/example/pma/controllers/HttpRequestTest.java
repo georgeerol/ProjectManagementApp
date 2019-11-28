@@ -10,7 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by George Fouche on 11/27/19.
@@ -32,6 +32,6 @@ public class HttpRequestTest {
     @Test
     public void homePageReturnsVersionNumberCorrectly_thenSuccess() {
         String renderedHtml = this.restTemplate.getForObject("http://localhost:" + port + "/", String.class);
-        assertEquals(renderedHtml.contains("1.0.0"), true);
+        assertTrue(renderedHtml.contains("1.0.0"));
     }
 }
