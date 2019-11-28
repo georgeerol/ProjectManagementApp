@@ -1,5 +1,6 @@
 package com.example.pma.dao;
 
+import com.example.pma.PmaApplication;
 import com.example.pma.entities.Project;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +15,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by George Fouche on 11/27/19.
  */
-@SpringBootTest
+
 @RunWith(SpringRunner.class)
+@SpringBootTest(classes = {PmaApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SqlGroup({
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {"classpath:schema.sql", "classpath:data.sql"}),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:drop.sql")
