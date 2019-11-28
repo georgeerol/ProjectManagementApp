@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-	@Value("2.2.2")
+	@Value("${version}")
 	private String ver;
 
 	@Autowired

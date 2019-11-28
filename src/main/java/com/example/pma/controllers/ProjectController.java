@@ -1,7 +1,6 @@
 package com.example.pma.controllers;
 
 import com.example.pma.dao.EmployeeRepository;
-import com.example.pma.dao.ProjectRepository;
 import com.example.pma.entities.Employee;
 import com.example.pma.entities.Project;
 import com.example.pma.services.ProjectService;
