@@ -1,6 +1,5 @@
 package com.example.pma.controllers;
 
-import com.example.pma.dao.EmployeeRepository;
 import com.example.pma.entities.Employee;
 import com.example.pma.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
