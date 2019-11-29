@@ -33,6 +33,6 @@ public class HttpRequestTest {
     @Test
     public void homePageReturnsVersionNumberCorrectly_thenSuccess() {
         String renderedHtml = this.restTemplate.getForObject("http://localhost:" + port + "/", String.class);
-        assertTrue(renderedHtml.contains("1.0.0"));
+        assertTrue(renderedHtml.contains("test"));
     }
 }
