@@ -6,18 +6,15 @@ This project is a Basic Project Management Application that uses:
 
 * **Front End**
 * Thymeleaf
-
 * **Back End**
   * Spring Boot(REST API Framework)
   * Spring Security(Authentication and Authorization-JWT)
-
 * **DevOps**
   * Maven(Dependencies Management)
   * Docker
-
 * **Database**
   * H2
-* PostgresSql
+  * PostgresSql
 * **Server**
   * Apache Tomcat
 
