@@ -23,7 +23,7 @@ This project is a Basic Project Management Application that uses:
 
 ![HomePage](./images/HomePage.png)
 ![EmployeesPage](./images/EmployeesPage.png)
-![EmployeesPage](./images/ProjectsPage.png)
+![ProjectsPage](./images/ProjectsPage.png)
 
 
 
