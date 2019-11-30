@@ -3,7 +3,6 @@ package com.example.pma.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -52,8 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/projects/new").hasRole("USER")
                 .antMatchers("/employees/new").hasRole("USER")
-                .antMatchers(HttpMethod.POST,"/employees/save").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/").authenticated().and().formLogin();
     }
 
@@ -62,8 +59,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity webSecurity) {
         webSecurity
                 .ignoring()
-                .antMatchers(
-                        HttpMethod.POST,"/");
+                .antMatchers("/h2-console/**/**");
     }
+
+
 
 }
