@@ -31,8 +31,8 @@ public class HttpRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void homePageReturnsSpringSecurityLoginPage() {
+    public void homePageReturnsVersionNumberCorrectly_thenSuccess() {
         String renderedHtml = this.restTemplate.getForObject("http://localhost:" + port + "/", String.class);
-        assertTrue(renderedHtml.contains("login"));
+        assertTrue(renderedHtml.contains("test"));
     }
 }
