@@ -1,5 +1,7 @@
 package com.example.pma.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
+    @JsonIgnore
     private List<Employee> employees;
 
     public Project() {

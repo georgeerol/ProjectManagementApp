@@ -1,5 +1,7 @@
 package com.example.pma.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class Employee {
         this.email = email;
     }
 
+    @JsonIgnore
     public List<Project> getProjects() {
         return projects;
     }
