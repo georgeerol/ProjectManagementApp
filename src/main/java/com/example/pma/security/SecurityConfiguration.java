@@ -47,11 +47,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/projects/new").hasRole("USER")
-                .antMatchers("/employees/new").hasRole("USER")
-                .antMatchers("/").authenticated().and().formLogin();
+                .antMatchers("/projects/new").hasRole("ADMIN")
+                .antMatchers("/projects/save").hasRole("ADMIN")
+                .antMatchers("/employees/new").hasRole("ADMIN")
+                .antMatchers("/employees/save").hasRole("ADMIN")
+                .antMatchers("/","/**").permitAll()
+                .and()
+                .formLogin();
+
     }
 
 
@@ -59,7 +63,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity webSecurity) {
         webSecurity
                 .ignoring()
+                .antMatchers("/projects/save")
+                .antMatchers("/employees/save")
                 .antMatchers("/h2-console/**/**");
+
     }
 
 
