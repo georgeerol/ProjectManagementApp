@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -23,20 +24,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource).withDefaultSchema()
-                .withUser("george")
-                .password("pass")
-                .roles("USER")
-                .and()
-                .withUser("erol")
-                .password("pass2")
-                .roles("USER")
-                .and()
-                .withUser("steph")
-                .password("pass")
-                .roles("ADMIN");
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery("select username,password, enabled " +
+                        "from users where username = ?")
+                .authoritiesByUsernameQuery("select username, authority " +
+                        "from authorities where username = ?")
+                .dataSource(dataSource)
+                .passwordEncoder(bCryptPasswordEncoder);
+
+
     }
 
     @Bean
@@ -52,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/projects/save").hasRole("ADMIN")
                 .antMatchers("/employees/new").hasRole("ADMIN")
                 .antMatchers("/employees/save").hasRole("ADMIN")
-                .antMatchers("/","/**").permitAll()
+                .antMatchers("/", "/**").permitAll()
                 .and()
                 .formLogin();
 
@@ -68,7 +69,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**/**");
 
     }
-
 
 
 }
