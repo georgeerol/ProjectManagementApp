@@ -1,6 +1,11 @@
 package com.example.pma.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -10,8 +15,14 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
     private long employeeId;
 
+    @NotNull
+    @Size(min=2,max=50)
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
+    @Email
+    @Column(unique = true)
     private String email;
 
 
@@ -30,6 +41,7 @@ public class Employee {
         this.email = email;
     }
 
+    @JsonIgnore
     public List<Project> getProjects() {
         return projects;
     }
